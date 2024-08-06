@@ -25,9 +25,7 @@ fun terpalRepository(ctx: JdbcContext) = object : Repository {
             .runOn(ctx)
     }
 
-    override suspend fun findById(id: Int): List<Person> {
-        return Sql("SELECT _id, names FROM people")
-            .queryOf<Person>()
-            .runOn(ctx)
-    }
+    override suspend fun findById(id: Int): List<Person> = Sql("SELECT _id, names FROM people")
+        .queryOf<Person>()
+        .runOn(ctx)
 }
